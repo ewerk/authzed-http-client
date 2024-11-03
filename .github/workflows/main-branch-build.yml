@@ -23,9 +23,7 @@ jobs:
           openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/v1.1.0/proto/apidocs.swagger.json"
           config-file: cfg/java.yml
           # TODO param for authzed version
-          command-args: |
-            -p "artifactVersion:0.0.0"
-            -p "library=restclient"
+          command-args: -p "artifactVersion=0.0.0" -p "library=restclient"
 
       - name: Switch into generated java client working directory
         run: |
