@@ -33,5 +33,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      # the name of maven input directory is derived from openapi action output
       - name: Run Maven build
-        run: mvn -B package --file generator-java/pom.xml
+        run: mvn -B package --file java-client/pom.xml
