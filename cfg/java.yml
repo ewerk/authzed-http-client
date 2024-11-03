@@ -1,7 +1,7 @@
 additionalProperties:
   groupId: com.ewerk.spicedb
   artifactId: authzed-http-client-restclient
-  artifactDescription: Auto generated SpiceDB OpenAPI HTTP client based on Spring RestClient.
+  artifactDescription: Auto generated SpiceDB OpenAPI HTTP client.
   apiPackage: com.ewerk.spicedb.authzed.http.client
   bigDecimalAsString: true
   dateLibrary: java8

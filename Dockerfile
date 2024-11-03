@@ -19,25 +19,16 @@ ARG java_version="17"
 ARG authzed_version="v1.1.0"
 ARG artifact_version="0.0.0"
 
+ADD cfg/java.yml /etc/java.yml
+
 RUN bash /usr/local/bin/docker-entrypoint.sh \
         generate \
         -g java \
         -i /tmp/openapi-spec.json \
+        -c /etc/java.yml \
         -o "/tmp/build/java-restclient" \
-        -p "groupId=com.ewerk.spicedb" \
-        -p "artifactId=authzed-http-client-restclient" \
-        -p "artifactVersion=${java_version}-${authzed_version}-${artifact_version}" \
-        -p "artifactDescription=Auto generated SpiceDB OpenAPI HTTP client based on Spring RestClient." \
-        -p "apiPackage=com.ewerk.spicedb.authzed.http.client" \
-        -p "bigDecimalAsString=true" \
-        -p "dateLibrary=java8" \
-        -p "developerOrganization=EWERK Digital GmbH" \
-        -p "developerOrganizationUrl=https://ewerk.com" \
         -p "library=restclient" \
-        -p "licenseName=Apache License v2" \
-        -p "scmUrl=https://github.com" \
-        -p "scmConnection=scm:git:git@github.com:openapitools/openapi-generator.git" \
-        -p "scmDeveloperConnection=scm:git:git@github.com:openapitools/openapi-generator.git"
+        -p "artifactVersion=${java_version}-${authzed_version}-${artifact_version}"
 
 # ------------------------------------------------------------------------------------------------------
 
