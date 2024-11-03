@@ -32,3 +32,6 @@ jobs:
           java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
           cache: maven
+
+      - name: Run Maven build
+        run: mvn -B package --file generator-java/pom.xml
