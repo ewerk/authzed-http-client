@@ -37,8 +37,11 @@ jobs:
       - name: Run Maven build
         run: mvn -B package --file java-client/pom.xml
 
-      - run: mkdir upload && cp -R java-client/target/*.jar upload
-      - uses: actions/upload-artifact@v4
+      - name: Prepare upload
+        run: mkdir upload && cp -R java-client/target/*.jar upload
+
+      - name: Upload to GitHub
+        uses: actions/upload-artifact@v4
         with:
           name: Java ${{ matrix.java-version }} client library (Spring RestClient)
           path: upload
