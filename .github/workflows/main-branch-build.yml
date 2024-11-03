@@ -1,0 +1,21 @@
+name: Build main
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  java-build:
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        java-version: [21]
+        java-http-lib: [restclient]
+
+    # TODO fully implement workflow
+    steps:
+      - uses: actions/checkout@v4
+#      - uses: jessehouwing/actions-semver-checker@v1
+#        with:
+#          check-minor-version: true
