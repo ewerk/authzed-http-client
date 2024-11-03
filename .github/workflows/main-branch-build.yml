@@ -4,18 +4,19 @@ on:
   push:
     branches: ["main"]
 
+# TODO fully implement workflow
 jobs:
   java-build:
     runs-on: ubuntu-22.04
 
     strategy:
       matrix:
-        java-version: [21]
+        java-version: [17, 21]
         java-http-lib: [restclient]
 
-    # TODO fully implement workflow
     steps:
       - uses: actions/checkout@v4
+
       - name: Generate Java (Spring RestClient) client
         uses: openapi-generators/openapitools-generator-action@v1
         with:
@@ -24,6 +25,13 @@ jobs:
           config-file: cfg/java.yml
           # TODO param for authzed version
           command-args: -p "artifactVersion=0.0.0" -p "library=restclient"
+
+      - name: Set up JDK ${{ matrix.version }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: "${{ matrix.version }}"
+          distribution: 'temurin'
+          cache: maven
 
       - name: Switch into generated java client working directory
         run: |
