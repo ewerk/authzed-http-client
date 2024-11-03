@@ -1,5 +1,7 @@
 # authzed-http-client
 
+[![Build main](https://github.com/ewerk/authzed-http-client/actions/workflows/main-branch-build.yml/badge.svg)](https://github.com/ewerk/authzed-http-client/actions/workflows/main-branch-build.yml)
+
 ## 🚀 Introduction
 
 The repository provides a building facade for generating HTTP clients for the [SpiceDB](https://authzed.com/spicedb) REST API.
@@ -32,4 +34,4 @@ build the client(s) locally using a Docker based stack.
 - [ ] Python build
 - [ ] C# build
 - [ ] main build GitHub actions
-- [ ] build badge
+- [x] build badge
