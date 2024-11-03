@@ -24,15 +24,11 @@ jobs:
           openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/v1.1.0/proto/apidocs.swagger.json"
           config-file: cfg/java.yml
           # TODO param for authzed version
-          command-args: -p "artifactVersion=0.0.0" -p "library=restclient"
+          command-args: -p "artifactVersion=0.0.0" -p "library=${{ matrix.java-http-lib }}"
 
-      - name: Set up JDK ${{ matrix.version }}
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.version }}
+          java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
           cache: maven
-
-      - name: Switch into generated java client working directory
-        run: |
-          cd java-client
