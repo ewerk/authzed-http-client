@@ -16,29 +16,17 @@ jobs:
     # TODO fully implement workflow
     steps:
       - uses: actions/checkout@v4
-      - name: Generate Angular Client
+      - name: Generate Java (Spring RestClient) client
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: java
-          # TODO param for authzed version
-          # TODO use config file
           openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/v1.1.0/proto/apidocs.swagger.json"
+          config-file: cfg/java.yml
+          # TODO param for authzed version
           command-args: |
-            -p "groupId=com.ewerk.spicedb"
-            -p "artifactId=authzed-http-client-restclient"
-            -p "artifactVersion=${java_version}-${authzed_version}-${artifact_version}"
-            -p "artifactDescription=Auto generated SpiceDB OpenAPI HTTP client based on Spring RestClient."
-            -p "apiPackage=com.ewerk.spicedb.authzed.http.client"
-            -p "bigDecimalAsString=true"
-            -p "dateLibrary=java8"
-            -p "developerOrganization=EWERK Digital GmbH"
-            -p "developerOrganizationUrl=https://ewerk.com"
+            -p "artifactVersion:0.0.0"
             -p "library=restclient"
-            -p "licenseName=Apache License v2"
-            -p "scmUrl=https://github.com"
-            -p "scmConnection=scm:git:git@github.com:openapitools/openapi-generator.git"
-            -p "scmDeveloperConnection=scm:git:git@github.com:openapitools/openapi-generator.git"    
 
       - name: Switch into generated java client working directory
         run: |
-          cd typescript-angular-client
+          cd java-client

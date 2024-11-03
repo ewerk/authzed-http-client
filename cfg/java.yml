@@ -1,0 +1,13 @@
+additionalProperties:
+  groupId: com.ewerk.spicedb
+  artifactId: authzed-http-client-restclient
+  artifactDescription: Auto generated SpiceDB OpenAPI HTTP client based on Spring RestClient.
+  apiPackage: com.ewerk.spicedb.authzed.http.client
+  bigDecimalAsString: true
+  dateLibrary: java8
+  developerOrganization: EWERK Digital GmbH
+  developerOrganizationUrl: https://ewerk.com
+  licenseName: Apache License v2
+  scmUrl: https://github.com
+  scmConnection: scm:git:git@github.com:ewerk/authzed-http-client.git
+  scmDeveloperConnection: scm:git:git@github.com:ewerk/authzed-http-client.git
