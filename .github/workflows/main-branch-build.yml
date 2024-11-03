@@ -40,5 +40,5 @@ jobs:
       - run: mkdir upload && cp -R java-client/target/*.jar upload
       - uses: actions/upload-artifact@v4
         with:
-          name: Java client library (Spring RestClient)
+          name: Java ${{ matrix.java-version }} client library (Spring RestClient)
           path: upload
