@@ -36,3 +36,9 @@ jobs:
       # the name of maven input directory is derived from openapi action output
       - name: Run Maven build
         run: mvn -B package --file java-client/pom.xml
+
+      - run: mkdir upload && cp -R java-client/target/*.jar upload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Java client library (Spring RestClient)
+          path: upload
