@@ -27,7 +27,7 @@ jobs:
 
       - name: Read SpiceDB version file
         shell: bash
-        run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> $GITHUB_ENV
+        run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> ${GITHUB_ENV}
 
       # consecutive numbers versioning workflow
       - name: Get current release version
@@ -41,12 +41,14 @@ jobs:
         with:
           version: ${{ steps.previous-tag.outputs.tag }}
 
-      # TODO version to env
+      - name: Create target Java artifact version
+        shell: bash
+        run: echo "JAVA_ARTIFACT_VERSION=${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-${{ steps.next-tag.outputs.version }}" >> ${GITHUB_ENV}
 
       - name: "Run java client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
         uses: ./.github/actions/java-client
         with:
-          release-version: ${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-${{ steps.next-tag.outputs.version }}
+          release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
           snapshot: true
 
       - name: "Publish java client snapshot to GitHub packages / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
