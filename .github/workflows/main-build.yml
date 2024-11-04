@@ -55,6 +55,7 @@ jobs:
         uses: ./.github/actions/java-client
         with:
           release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
+          spicedb-version: ${{ needs.prepare.outputs.spicedb-version }}
           snapshot: true
 
       - name: "Publish java client snapshot to GitHub packages / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"

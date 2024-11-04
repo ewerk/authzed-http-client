@@ -8,13 +8,16 @@ branding:
   icon: book
 
 inputs:
+  spicedb-version:
+    required: true
+    description: 'The SpiceDB version to use'
   release-version:
     required: true
-    description: Maven artifact version to use
+    description: 'Maven artifact version to use'
   snapshot:
     required: true
     default: 'true'
-    description: Whether to create a Maven snapshot artifact
+    description: 'Whether to create a Maven snapshot artifact'
 
 runs:
   using: 'composite'
@@ -24,7 +27,7 @@ runs:
       uses: openapi-generators/openapitools-generator-action@v1
       with:
         generator: java
-        openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${SPICEDB_VERSION}/proto/apidocs.swagger.json"
+        openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${{ inputs.spicedb-version }}/proto/apidocs.swagger.json"
         config-file: cfg/java.yml
         command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ inputs.release-version }}" -p "snapshotVersion=${{ inputs.snapshot }}" -p "library=${{ matrix.java-http-lib }}"
 
