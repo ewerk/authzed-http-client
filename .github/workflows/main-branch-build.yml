@@ -41,7 +41,7 @@ jobs:
           distribution: 'liberica'
           server-id: github
           cache: maven
-          cache-dependency-path: 'java-client/pom.xml
+          cache-dependency-path: 'java-client/pom.xml'
 
       # the name of maven input directory is derived from openapi action output
       - name: Run Maven build
