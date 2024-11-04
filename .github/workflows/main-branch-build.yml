@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   java-client:
@@ -41,6 +42,7 @@ jobs:
           distribution: 'liberica'
           cache: maven
           cache-dependency-path: 'java-client/pom.xml'
+          server-id: 'github'
 
       # the name of maven input directory is derived from openapi action output
       - name: Run Maven build
