@@ -1,6 +1,6 @@
 # authzed-http-client
 
-[![Build main](https://github.com/ewerk/authzed-http-client/actions/workflows/main-branch-build.yml/badge.svg)](https://github.com/ewerk/authzed-http-client/actions/workflows/main-branch-build.yml)
+[![main](https://github.com/ewerk/authzed-http-client/actions/workflows/main-build.yml/badge.svg)](https://github.com/ewerk/authzed-http-client/actions/workflows/main-build.yml)
 
 ## 🚀 Introduction
 
