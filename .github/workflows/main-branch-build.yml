@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         java-version: [17, 21]
-        java-http-lib: [restclient]
+        java-http-lib: [restclient, okhttp-gson]
 
     steps:
       - name: Checkout repository
