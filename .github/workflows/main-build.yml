@@ -92,6 +92,6 @@ jobs:
         uses: ./.github/actions/typescript-client
         with:
           spicedb-version: ${{ needs.prepare.outputs.spicedb-version }}
-          release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
+          release-version: ${{ env.NPM_ARTIFACT_VERSION }}
           generator: ${{ matrix.generator }}
           openapi-spec: ${{ needs.prepare.outputs.spicedb-openapi-url }}
