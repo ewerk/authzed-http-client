@@ -18,7 +18,7 @@ inputs:
     required: true
     default: 'true'
     description: 'Whether to create a Maven snapshot artifact'
-  spec:
+  openapi-spec:
     required: true
     description: 'OpenAPI spec url to use for generation'
 
@@ -30,7 +30,7 @@ runs:
       uses: openapi-generators/openapitools-generator-action@v1
       with:
         generator: java
-        openapi-url: ${{ inputs.spec }}
+        openapi-url: "${{ inputs.openapi-spec }}"
         config-file: cfg/java.yml
         command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ inputs.release-version }}" -p "snapshotVersion=${{ inputs.snapshot }}" -p "library=${{ matrix.java-http-lib }}"
 

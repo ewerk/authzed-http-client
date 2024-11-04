@@ -17,7 +17,7 @@ inputs:
   generator:
     required: true
     description: NPM generator to use
-  spec:
+  openapi-spec:
     required: true
     description: 'OpenAPI spec url to use for generation'
 
@@ -29,6 +29,6 @@ runs:
       uses: openapi-generators/openapitools-generator-action@v1
       with:
         generator: typescript
-        openapi-url: ${{ inputs.spec }}
+        openapi-url: "${{ inputs.openapi-spec }}"
         config-file: cfg/typescript.yml
         command-args: -p "npmName=authzed-http-client-${{ inputs.generator }}" -p "npmVersion=${{ inputs.release-version }}"
