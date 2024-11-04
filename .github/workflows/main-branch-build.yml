@@ -18,14 +18,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Read SpiceDB version file
+        run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> $GITHUB_ENV
+
       - name: Generate Java (Spring RestClient) client
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: java
+          # TODO param for authzed version
           openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/v1.1.0/proto/apidocs.swagger.json"
           config-file: cfg/java.yml
           # TODO param for authzed version
-          command-args: -p "artifactVersion=0.0.0" -p "library=${{ matrix.java-http-lib }}"
+          command-args: -p "artifactVersion=${{ matrix.java-version }}-${SPICEDB_VERSION}-0.0.0" -p "library=${{ matrix.java-http-lib }}"
 
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
