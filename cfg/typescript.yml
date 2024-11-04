@@ -5,5 +5,4 @@ additionalProperties:
   gitHost: 'github.com'
   gitUserId: 'ewerk'
   gitRepoId: 'authzed-http-client'
-  npmRepository: 'foo.bar.com'
   supportsES6: true
