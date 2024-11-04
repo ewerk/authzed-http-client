@@ -7,7 +7,6 @@ on:
 permissions:
   contents: read
 
-# TODO fully implement workflow
 jobs:
   java-client:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
@@ -39,8 +38,10 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java-version }}
-          distribution: 'temurin'
+          distribution: 'liberica'
+          server-id: github
           cache: maven
+          cache-dependency-path: 'java-client/pom.xml
 
       # the name of maven input directory is derived from openapi action output
       - name: Run Maven build
