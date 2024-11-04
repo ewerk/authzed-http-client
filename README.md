@@ -119,7 +119,7 @@ The following list is just high level reminder.
     - [x] Publish Java clients snapshots
     - [x] Workflow job or step templates
 - [ ] Main build GitHub workflow(s)
-    - [ ] Java build
+    - [x] Java build
     - [ ] Typescript build
     - [ ] Python build
     - [ ] C# build

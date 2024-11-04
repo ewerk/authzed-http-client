@@ -17,7 +17,7 @@ WORKDIR /tmp/build/java-restclient
 
 ARG java_version="21"
 ARG authzed_version="v1.1.0"
-ARG artifact_version="0.0.0"
+ARG artifact_version="0"
 ARG library="restclient"
 
 ADD cfg/java.yml /etc/java.yml
