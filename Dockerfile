@@ -34,8 +34,37 @@ RUN bash /usr/local/bin/docker-entrypoint.sh \
 
 # ------------------------------------------------------------------------------------------------------
 
+FROM openapitools/openapi-generator-cli:v7.9.0 AS typescript-fetch
+
+COPY --from=download /tmp/openapi-spec.json /tmp/openapi-spec.json
+
+RUN mkdir -p /tmp/build/typescript-fetch
+WORKDIR /tmp/build/typescript-fetch
+
+ARG node_version="21"
+ARG authzed_version="v1.1.0"
+ARG artifact_version="0.0.0"
+
+ADD cfg/typescript-fetch.yml /etc/typescript-fetch.yml
+
+RUN bash /usr/local/bin/docker-entrypoint.sh \
+        generate \
+        -g typescript-fetch \
+        -i /tmp/openapi-spec.json \
+        -c /etc/typescript-fetch.yml \
+        -o "/tmp/build/typescript-fetch" \
+        --git-host "github.com" \
+        --git-repo-id "authzed-http-client" \
+        --git-user-id "ewerk" \
+        -p npmName="@ewerk/authzed-http-client-restclient" \
+        -p "npmVersion=${artifact_version}-${node_version}-${authzed_version}" \
+        -p "snapshot=true"
+
+# ------------------------------------------------------------------------------------------------------
+
 FROM scratch AS artifacts
 
 LABEL org.opencontainers.image.authors="info@ewerk.com"
 
 COPY --from=java-restclient /tmp/build/java-restclient /java-restclient
+COPY --from=typescript-fetch /tmp/build/typescript-fetch /typescript-fetch

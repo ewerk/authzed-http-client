@@ -1,0 +1,25 @@
+name: typescript-client-publish-snapshot
+
+description: Publish NPM client snapshot to GitHub packages
+
+branding:
+  color: black
+  icon: package
+
+inputs:
+  generator:
+    required: true
+    description: NPM generator to use
+  gh-token:
+    required: true
+    description: "Input for GitHub secret token"
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Publish NPM snapshot package to GitHub Packages'
+      working-directory: ${{ inputs.generator }}-client
+      shell: bash
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.gh-token }}

@@ -1,0 +1,4 @@
+# See: https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/typescript-axios.md
+additionalProperties:
+  licenseName: 'Apache License v2'
+  supportsES6: true

@@ -1,3 +1,4 @@
+# TODO rename this action
 name: java-publish-client-snapshot
 
 description: Publish Java client snapshot to GitHub packages

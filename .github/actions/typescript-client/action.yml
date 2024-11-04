@@ -1,5 +1,5 @@
 # Schema: https://json.schemastore.org/github-action.json
-name: java-client
+name: typescript-client
 
 description: Build OpenAPI Java client for given parameters.
 
@@ -23,16 +23,55 @@ inputs:
   openapi-version:
     required: true
     description: 'OpenAPI release version to be used'
+  snapshot:
+    required: true
+    default: 'true'
+    description: 'Whether to create a Maven snapshot artifact'
+  gh-token:
+    required: true
+    description: "Input for GitHub secret token"
 
 runs:
   using: 'composite'
   steps:
     # See https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/typescript.md
-    - name: Generate Typescript ${{ matrix.java-version }} client
+    - name: Generate Typescript ${{ matrix.node-version }} client
       uses: openapi-generators/openapitools-generator-action@v1
       with:
-        generator: typescript
+        generator: ${{ inputs.generator }}
         generator-tag: ${{ inputs.openapi-version }}
         openapi-url: ${{ inputs.openapi-spec }}
-        config-file: cfg/typescript.yml
-        command-args: -p "npmName=authzed-http-client-${{ inputs.generator }}" -p "npmVersion=${{ inputs.release-version }}"
+        config-file: cfg/${{ inputs.generator }}.yml
+        # -p "npmRepository=https://github.com/ewerk/authzed-http-client.git"
+        # TODO try multiline
+        command-args: --git-host "github.com" --git-repo-id "authzed-http-client" --git-user-id "ewerk" -p "npmName=@ewerk/authzed-http-client-${{ inputs.generator }}" -p "npmVersion=${{ inputs.release-version }}" -p "snapshot=${{ inputs.snapshot }}"
+    - name: "Setup Node.js ${{ matrix.node-version }}"
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@ewerk'
+        cache: 'npm'
+        cache-dependency-path: ./${{ inputs.generator }}-client/package.json
+        always-auth: true
+    - name: 'Log...'
+      #working-directory: ${{ inputs.generator }}-client
+      shell: bash
+      run: |
+        pwd
+        ls -al
+    - name: 'Log generated clients root directory content'
+      working-directory: ${{ inputs.generator }}-client
+      shell: bash
+      run: |
+        pwd
+        ls -al
+        cat package.json
+    - name: 'Run NPM install'
+      working-directory: ${{ inputs.generator }}-client
+      shell: bash
+      run: npm install
+    - name: 'Run NPM build'
+      working-directory: ${{ inputs.generator }}-client
+      shell: bash
+      run: npm run build
