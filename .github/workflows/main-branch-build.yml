@@ -48,6 +48,6 @@ jobs:
         run: mvn -B package --file java-client/pom.xml
 
       - name: Publish SNAPSHOT version to GitHub Packages
-        run: mvn -B --no-transfer-progress --file java-client/pom.xml deploy -DskipTests -DaltDeploymentRepository=github::https://maven.pkg.github.com/ewerk/authzed-http-client
+        run: mvn -B --no-transfer-progress --file java-client/pom.xml deploy -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/ewerk/authzed-http-client
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
