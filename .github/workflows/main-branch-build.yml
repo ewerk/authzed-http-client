@@ -19,7 +19,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Read SpiceDB version file
-        run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> $GITHUB_ENV
+        run: |
+          VER=$(cat spicedb.version)
+          echo "SPICEDB_VERSION=$VER" >> $GITHUB_ENV
 
       - name: Generate Java ${{ matrix.java-version }} client (${{ matrix.java-http-lib }})
         uses: openapi-generators/openapitools-generator-action@v1
