@@ -5,10 +5,8 @@
 ## 🚀 Introduction
 
 The repository provides a building facade for generating HTTP clients for the [SpiceDB](https://authzed.com/spicedb)
-REST API.
-It currently is in incubating/showcase state.
-The target is to provide pre-packaged HTTP clients for various languages.
-The build infrastructure is backed by the [OpenAPI Generator CLI]().
+REST API. It currently is in incubating/showcase state. The target is to provide pre-packaged HTTP clients for 
+various languages. The build infrastructure is backed by the [OpenAPI Generator CLI]().
 
 ---
 
@@ -53,13 +51,17 @@ the [packages view](https://github.com/orgs/ewerk/packages?repo_name=authzed-htt
 
 The snapshots should be immediately available to your build, e.g. by using:
 
-```xml
+```groovy
+// should only be necessary for snapshots as final versions will be published to maven central
+maven {
+  url = 'https://maven.pkg.github.com/ewerk/authzed-http-client'
+  credentials {
+    username = "System.getenv('GITHUB_USER')"
+    password = "System.getenv('GITHUB_TOKEN')"
+  }
+}
 
-<dependency>
-  <groupId>com.ewerk.spicedb</groupId>
-  <artifactId>authzed-http-client-restclient</artifactId>
-  <version>17-v1.1.0-0.0.0-SNAPSHOT</version>
-</dependency>
+implementation 'com.ewerk.spicedb:authzed-http-client-restclient:0.0.1-21-v1.1.0-SNAPSHOT'
 ```
 
 #### Releases
@@ -87,7 +89,8 @@ public class ExperimentalServiceApiExample {
     defaultClient.setBasePath("http://localhost");
 
     var apiInstance = new ExperimentalServiceApi(defaultClient);
-    var body = new V1BulkCheckPermissionRequest(); // V1BulkCheckPermissionRequest | NOTE: Deprecated now that BulkCheckPermission has been promoted to the stable API as \"CheckBulkPermission\".
+    // V1BulkCheckPermissionRequest | NOTE: Deprecated now that BulkCheckPermission has been promoted to the stable API as "CheckBulkPermission".
+    var body = new V1BulkCheckPermissionRequest(); 
 
     try {
       var result = apiInstance.experimentalServiceBulkCheckPermission(body);
