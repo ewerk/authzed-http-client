@@ -43,6 +43,10 @@ by [openapi-generators/openapitools-generator-action@v1](https://github.com/mark
 
 ### Java
 
+#### Version policy
+
+- [ ] t.b.d.
+
 #### Snapshots
 
 The Java client library build from the `main` branch are deployed to the GitHub Packages repo.
