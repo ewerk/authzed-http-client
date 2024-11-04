@@ -2,6 +2,7 @@ additionalProperties:
   groupId: com.ewerk.spicedb
   artifactDescription: Auto generated SpiceDB OpenAPI HTTP client.
   apiPackage: com.ewerk.spicedb.authzed.http.client
+  modelPackage: com.ewerk.spicedb.authzed.http.model
   bigDecimalAsString: true
   dateLibrary: java8
   developerName: EWERK Digital GmbH
