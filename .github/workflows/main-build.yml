@@ -19,7 +19,14 @@ jobs:
       - name: Read SpiceDB version file
         id: spicedb-version
         shell: bash
-        run: echo "version=$(cat spicedb.version)" >> ${GITHUB_OUTPUT}
+        run: |
+          echo "spicedb-version=$(cat spicedb.version)" >> ${GITHUB_OUTPUT}
+          echo "spicedb-version=$(cat spicedb.version)" >> ${GITHUB_ENV}
+
+      - name: Create SpiceDB OpenAPI spec url
+        id: spicedb-openapi-url
+        shell: bash
+        run: echo "spicedb-openapi-url=https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${{ env.spicedb-version }}/proto/apidocs.swagger.json" >> ${GITHUB_OUTPUT}
 
       - name: Get next semver version
         uses: reecetech/version-increment@2024.10.1
@@ -28,8 +35,9 @@ jobs:
           scheme: semver
           increment: patch
     outputs:
-      spicedb-version: ${{ steps.spicedb-version.outputs.version }}
-      next-artifact-version: ${{ steps.next-artifact-version.outputs.version }}
+      spicedb-version: ${{ steps.spicedb-version.outputs.spicedb-version }}
+      spicedb-openapi-url: ${{ env.spicedb-openapi-url }}
+      next-artifact-version: ${{ steps.next-artifact-version.outputs.spicedb-version }}
 
   java-client:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
