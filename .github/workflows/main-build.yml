@@ -30,20 +30,16 @@ jobs:
         run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> ${GITHUB_ENV}
 
       # consecutive numbers versioning workflow
-      - name: Get current release version
-        id: previous-tag
-        uses: 'WyriHaximus/github-action-get-previous-tag@v1'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get next incremental release version
-        id: next-tag
-        uses: 'WyriHaximus/github-action-next-release-version@v1.1.0'
+      - name: Get next calver artifact version
+        uses: reecetech/version-increment@2024.10.1
+        id: java-artifact-version
         with:
-          version: ${{ steps.previous-tag.outputs.tag }}
+          scheme: calver
+          increment: patch
 
       - name: Create target Java artifact version
         shell: bash
-        run: echo "JAVA_ARTIFACT_VERSION=${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-${{ steps.next-tag.outputs.version }}" >> ${GITHUB_ENV}
+        run: echo "JAVA_ARTIFACT_VERSION=${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-${{ steps.java-artifact-version.outputs.version }}" >> ${GITHUB_ENV}
 
       - name: "Run java client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
         uses: ./.github/actions/java-client

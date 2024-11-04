@@ -115,7 +115,7 @@ The following list is just high level reminder.
     - [x] contributing guide
     - [ ] security policy
 - [x] PoC
-    - [x] Consecutive (incremental) number release versioning
+    - [x] Calver compliant release versioning
     - [x] Publish Java clients snapshots
     - [x] Workflow job or step templates
 - [ ] Main build GitHub workflow(s)

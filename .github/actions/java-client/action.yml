@@ -3,6 +3,10 @@ name: java-client
 
 description: Build OpenAPI Java client for given parameters.
 
+branding:
+  color: black
+  icon: book
+
 inputs:
   release-version:
     required: true

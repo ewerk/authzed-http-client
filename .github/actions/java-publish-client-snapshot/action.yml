@@ -2,6 +2,10 @@ name: java-publish-client-snapshot
 
 description: Publish Java client snapshot to GitHub packages
 
+branding:
+  color: black
+  icon: package
+
 inputs:
   gh-token:
     required: true
