@@ -2,8 +2,6 @@
 
 [![Build main](https://github.com/ewerk/authzed-http-client/actions/workflows/main-branch-build.yml/badge.svg)](https://github.com/ewerk/authzed-http-client/actions/workflows/main-branch-build.yml)
 
----
-
 ## 🚀 Introduction
 
 The repository provides a building facade for generating HTTP clients for the [SpiceDB](https://authzed.com/spicedb)
