@@ -7,15 +7,6 @@ inputs:
   gh-token:
     required: true
     description: "Input for GitHub secret token"
-#  spicedb-version:
-#    required: true
-#    description: "Global SpiceDB version to build"
-#  java-version:
-#    required: true
-#    description: "Java JDK version to use"
-#  java-http-lib:
-#    required: true
-#    description: "Library implementation to use, see 'library' property at https://openapi-generator.tech/docs/generators/java/"
 
 runs:
   using: 'composite'
