@@ -16,18 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Read SpiceDB version file
-        id: spicedb-version
+      - name: Read versions from file(s)
+        id: read-versions
         shell: bash
         run: |
-          echo "spicedb-version=$(cat spicedb.version)" >> ${GITHUB_OUTPUT}
           echo "spicedb-version=$(cat spicedb.version)" >> ${GITHUB_ENV}
-
-      - name: Read OpenAPI version file
-        id: openapi-version
-        shell: bash
-        run: |
-          echo "version=$(cat openapi.version)" >> ${GITHUB_OUTPUT}
+          echo "spicedb-version=$(cat spicedb.version)" >> ${GITHUB_OUTPUT}
+          echo "openapi-version=$(cat openapi.version)" >> ${GITHUB_OUTPUT}
 
       - name: Create SpiceDB OpenAPI spec url
         id: spicedb-openapi-url
@@ -41,10 +36,10 @@ jobs:
           scheme: semver
           increment: patch
     outputs:
-      spicedb-version: ${{ steps.spicedb-version.outputs.spicedb-version }}
+      spicedb-version: ${{ steps.read-versions.outputs.spicedb-version }}
+      openapi-version: ${{ steps.read-versions.outputs.openapi-version }}
       spicedb-openapi-url: ${{ steps.spicedb-openapi-url.outputs.url }}
       next-artifact-version: ${{ steps.next-artifact-version.outputs.version }}
-      openapi-version: ${{ steps.openapi-version.outputs.version }}
 
   java-client:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
