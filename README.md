@@ -114,8 +114,8 @@ The following list is just high level reminder.
 - [ ] Missing community standards
     - [x] contributing guide
     - [ ] security policy
-- [ ] PoC
-    - [ ] Semantic versioning
+- [x] PoC
+    - [x] Consecutive (incremental) number release versioning
     - [x] Publish Java clients snapshots
     - [x] Workflow job or step templates
 - [ ] Main build GitHub workflow(s)

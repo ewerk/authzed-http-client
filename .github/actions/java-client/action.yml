@@ -3,9 +3,19 @@ name: java-client
 
 description: Build OpenAPI Java client for given parameters.
 
+inputs:
+  release-version:
+    required: true
+    description: Maven artifact version to use
+  snapshot:
+    required: true
+    default: 'true'
+    description: Whether to create a Maven snapshot artifact
+
 runs:
   using: 'composite'
   steps:
+    # Using https://openapi-generator.tech/docs/generators/java/
     - name: Generate Java ${{ matrix.java-version }} client (${{ matrix.java-http-lib }})
       uses: openapi-generators/openapitools-generator-action@v1
       with:
@@ -13,7 +23,7 @@ runs:
         openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${SPICEDB_VERSION}/proto/apidocs.swagger.json"
         config-file: cfg/java.yml
         # TODO param for artifact version
-        command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-0.0.0-SNAPSHOT" -p "library=${{ matrix.java-http-lib }}"
+        command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ inputs.release-version }}" -p -p "snapshotVersion=${{ snapshot }}" "library=${{ matrix.java-http-lib }}"
 
     # using 'github' as server-id prepares pushing to GitHub packages repo for snapshots
     - name: Set up JDK ${{ matrix.java-version }}

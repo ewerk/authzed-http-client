@@ -22,13 +22,32 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required due to the way Git works, without it this action won't be able to find any or the correct tags
 
       - name: Read SpiceDB version file
         shell: bash
         run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> $GITHUB_ENV
 
+      # consecutive numbers versioning workflow
+      - name: Get current release version
+        id: previous-tag
+        uses: 'WyriHaximus/github-action-get-previous-tag@v1'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get next incremental release version
+        id: next-tag
+        uses: 'WyriHaximus/github-action-next-release-version@v1.1.0'
+        with:
+          version: ${{ steps.previous-tag.outputs.tag }}
+
+      # TODO version to env
+
       - name: "Run java client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
         uses: ./.github/actions/java-client
+        with:
+          release-version: ${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-${{ steps.next-tag.outputs.version }}
+          snapshot: true
 
       - name: "Publish java client snapshot to GitHub packages / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
         uses: ./.github/actions/java-publish-client-snapshot
