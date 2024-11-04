@@ -44,5 +44,5 @@ jobs:
       - name: Upload to GitHub
         uses: actions/upload-artifact@v4
         with:
-          name: Java ${{ matrix.java-version }} client library (Spring RestClient)
+          name: Java ${{ matrix.java-version }} client library (${{ matrix.java-http-lib }})
           path: upload
