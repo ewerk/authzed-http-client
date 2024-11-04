@@ -6,7 +6,7 @@ on:
 
 # TODO fully implement workflow
 jobs:
-  java-build:
+  java-client:
     runs-on: ubuntu-22.04
 
     strategy:
@@ -15,7 +15,8 @@ jobs:
         java-http-lib: [restclient]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Generate Java (Spring RestClient) client
         uses: openapi-generators/openapitools-generator-action@v1
