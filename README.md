@@ -90,7 +90,7 @@ public class ExperimentalServiceApiExample {
     var body = new V1BulkCheckPermissionRequest(); // V1BulkCheckPermissionRequest | NOTE: Deprecated now that BulkCheckPermission has been promoted to the stable API as \"CheckBulkPermission\".
 
     try {
-      varresult = apiInstance.experimentalServiceBulkCheckPermission(body);
+      var result = apiInstance.experimentalServiceBulkCheckPermission(body);
       System.out.println(result);
     } catch (HttpStatusCodeException cause) {
       System.err.println("Exception when calling ExperimentalServiceApi#experimentalServiceBulkCheckPermission");
