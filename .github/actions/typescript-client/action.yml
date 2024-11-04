@@ -17,6 +17,9 @@ inputs:
   generator:
     required: true
     description: NPM generator to use
+  spec:
+    required: true
+    description: 'OpenAPI spec url to use for generation'
 
 runs:
   using: 'composite'
@@ -26,7 +29,6 @@ runs:
       uses: openapi-generators/openapitools-generator-action@v1
       with:
         generator: typescript
-        # FIXME base url from prepare
-        openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${{ inputs.spicedb-version }}/proto/apidocs.swagger.json"
+        openapi-url: ${{ inputs.spec }}
         config-file: cfg/typescript.yml
         command-args: -p "npmName=authzed-http-client-${{ inputs.generator }}" -p "npmVersion=${{ inputs.release-version }}"
