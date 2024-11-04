@@ -23,8 +23,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Read SpiceDB version file
+        shell: bash
+        run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> $GITHUB_ENV
+
       - name: 'Run java client build composite action'
         uses: ./.github/actions/main-java
         with:
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          spicedb-version: ${{ env.SPICEDB_VERSION }}
           java-version: ${{ matrix.java-version }}
           java-http-lib: ${{ matrix.java-http-lib }}

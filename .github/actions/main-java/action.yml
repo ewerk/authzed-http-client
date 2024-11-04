@@ -3,30 +3,24 @@ name: Build java client
 
 description: Build Java client for given parameters.
 
+# TODO do we need to duplicate build matrix
 inputs:
+  gh-token:
+    required: true
+    description: "Input for GitHub secret token"
+  spicedb-version:
+    required: true
+    description: "Global SpiceDB version to build"
   java-version:
     required: true
-    description: "Lorem ipsum dolor sit amet"
+    description: "Java JDK version to use"
   java-http-lib:
     required: true
-    description: "Lorem ipsum dolor sit amet"
-
-#outputs:
-#  reusable_output:
-#    description: 'Output from the reusable workflow'
-#    value: ${{ steps.process-step.outputs.step_output }}
+    description: "Library implementation to use, see 'library' property at https://openapi-generator.tech/docs/generators/java/"
 
 runs:
   using: 'composite'
-  # TODO do we need the checkout
   steps:
-    #    - name: Checkout repository
-    #      uses: actions/checkout@v4
-
-    - name: Read SpiceDB version file
-      shell: bash
-      run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> $GITHUB_ENV
-
     - name: Generate Java ${{ matrix.java-version }} client (${{ matrix.java-http-lib }})
       uses: openapi-generators/openapitools-generator-action@v1
       with:
@@ -56,4 +50,4 @@ runs:
       shell: bash
       run: mvn -B --no-transfer-progress --file java-client/pom.xml deploy -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/ewerk/authzed-http-client
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.gh-token }}
