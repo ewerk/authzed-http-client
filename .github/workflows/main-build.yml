@@ -63,7 +63,7 @@ jobs:
           spicedb-version: ${{ needs.prepare.outputs.spicedb-version }}
           release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
           snapshot: true
-          spec: ${{ needs.prepare.outputs.spicedb-openapi-url }}
+          openapi-spec: ${{ needs.prepare.outputs.spicedb-openapi-url }}
 
       - name: "Publish java client snapshot to GitHub packages / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version }} / HTTP lib: ${{ matrix.java-http-lib }}"
         uses: ./.github/actions/java-publish-client-snapshot
@@ -94,4 +94,4 @@ jobs:
           spicedb-version: ${{ needs.prepare.outputs.spicedb-version }}
           release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
           generator: ${{ matrix.generator }}
-          spec: ${{ needs.prepare.outputs.spicedb-openapi-url }}
+          openapi-spec: ${{ needs.prepare.outputs.spicedb-openapi-url }}
