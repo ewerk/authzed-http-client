@@ -21,7 +21,7 @@ jobs:
       - name: Read SpiceDB version file
         run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> $GITHUB_ENV
 
-      - name: Generate Java (Spring RestClient) client
+      - name: Generate Java ${{ matrix.java-version }} client (${{ matrix.java-http-lib }})
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: java
