@@ -1,10 +1,9 @@
 # See https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/typescript.md
-# FIXME proper config
 additionalProperties:
   framework: fetch-api
   licenseName: 'Apache License v2'
-  gitHost: 'foo.com'
-  gitUserId: 'to-be-done'
+  gitHost: 'github.com'
+  gitUserId: 'ewerk'
   gitRepoId: 'authzed-http-client'
   npmRepository: 'foo.bar.com'
   supportsES6: true

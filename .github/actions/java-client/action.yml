@@ -21,6 +21,9 @@ inputs:
   openapi-spec:
     required: true
     description: 'OpenAPI spec url to use for generation'
+  openapi-version:
+    required: true
+    description: 'OpenAPI release version to be used'
 
 runs:
   using: 'composite'
@@ -30,7 +33,8 @@ runs:
       uses: openapi-generators/openapitools-generator-action@v1
       with:
         generator: java
-        openapi-url: "${{ inputs.openapi-spec }}"
+        generator-tag: ${{ inputs.openapi-version }}
+        openapi-url: ${{ inputs.openapi-spec }}
         config-file: cfg/java.yml
         command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ inputs.release-version }}" -p "snapshotVersion=${{ inputs.snapshot }}" -p "library=${{ matrix.java-http-lib }}"
 
