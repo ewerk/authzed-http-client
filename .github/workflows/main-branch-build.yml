@@ -39,7 +39,6 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: 'liberica'
-          server-id: github
           cache: maven
           cache-dependency-path: 'java-client/pom.xml'
 
