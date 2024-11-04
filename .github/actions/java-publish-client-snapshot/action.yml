@@ -17,7 +17,7 @@ runs:
     # -DaltDeploymentRepository is needed as openapi generator does not create 'distributionManagement' POM section
     - name: Publish SNAPSHOT version to GitHub Packages
       shell: bash
-      run: \
+      run: |
         mvn -B --no-transfer-progress \
           --file java-client/pom.xml deploy \
           -DskipTests \
