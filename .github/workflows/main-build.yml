@@ -34,7 +34,7 @@ jobs:
         uses: reecetech/version-increment@2024.10.1
         id: java-artifact-version
         with:
-          scheme: calver
+          scheme: semver
           increment: patch
 
       - name: Create target Java artifact version

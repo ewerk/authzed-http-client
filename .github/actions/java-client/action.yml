@@ -26,7 +26,7 @@ runs:
         generator: java
         openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${SPICEDB_VERSION}/proto/apidocs.swagger.json"
         config-file: cfg/java.yml
-        command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ inputs.release-version }}" -p "snapshotVersion=${{ snapshot }}" -p "library=${{ matrix.java-http-lib }}"
+        command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ inputs.release-version }}" -p "snapshotVersion=${{ inputs.snapshot }}" -p "library=${{ matrix.java-http-lib }}"
 
     # using 'github' as server-id prepares pushing to GitHub packages repo for snapshots
     - name: Set up JDK ${{ matrix.java-version }}
