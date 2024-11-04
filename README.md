@@ -52,7 +52,7 @@ the [packages view](https://github.com/orgs/ewerk/packages?repo_name=authzed-htt
 The snapshots should be immediately available to your build, e.g. by using:
 
 ```groovy
-// should only be necessary for snapshots as final versions will be published to maven central
+// only necessary for snapshots final versions will be published to maven central
 maven {
   url = 'https://maven.pkg.github.com/ewerk/authzed-http-client'
   credentials {
