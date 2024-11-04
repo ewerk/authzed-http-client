@@ -1,0 +1,61 @@
+name: Build main
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  java-client:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        java-version: [17, 21]
+        java-http-lib: [restclient, okhttp-gson]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 'Run java client build composite action'
+        uses: .github/actions/main-java.yml
+        with:
+          java-version: ${{ matrix.java-version }}
+          java-http-lib: ${{ matrix.java-http-lib }}
+
+#      - name: Read SpiceDB version file
+#        run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> $GITHUB_ENV
+#
+#      - name: Generate Java ${{ matrix.java-version }} client (${{ matrix.java-http-lib }})
+#        uses: openapi-generators/openapitools-generator-action@v1
+#        with:
+#          generator: java
+#          openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${SPICEDB_VERSION}/proto/apidocs.swagger.json"
+#          config-file: cfg/java.yml
+#          # TODO param for artifact version
+#          command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-0.0.0-SNAPSHOT" -p "library=${{ matrix.java-http-lib }}"
+#
+#      - name: Set up JDK ${{ matrix.java-version }}
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: ${{ matrix.java-version }}
+#          distribution: 'liberica'
+#          cache: maven
+#          cache-dependency-path: 'java-client/pom.xml'
+#          server-id: 'github'
+#
+#      # the name of maven input directory is derived from openapi action output
+#      - name: Run Maven build
+#        run: mvn -B package --file java-client/pom.xml
+#
+#      # -DaltDeploymentRepository is needed as openapi generator does not create 'distributionManagement' POM section
+#      - name: Publish SNAPSHOT version to GitHub Packages
+#        run: mvn -B --no-transfer-progress --file java-client/pom.xml deploy -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/ewerk/authzed-http-client
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
