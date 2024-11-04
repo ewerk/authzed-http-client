@@ -25,10 +25,9 @@ jobs:
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: java
-          # TODO param for authzed version
           openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${SPICEDB_VERSION}/proto/apidocs.swagger.json"
           config-file: cfg/java.yml
-          # TODO param for authzed version
+          # TODO param for artifact version
           command-args: -p "artifactVersion=${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-0.0.0-SNAPSHOT" -p "library=${{ matrix.java-http-lib }}"
 
       - name: Set up JDK ${{ matrix.java-version }}
