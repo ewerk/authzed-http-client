@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 'Run java client build composite action'
-        uses: ./.github/actions/main-java
+        uses: ./.github/actions/main-java.yml
         with:
           java-version: ${{ matrix.java-version }}
           java-http-lib: ${{ matrix.java-http-lib }}
