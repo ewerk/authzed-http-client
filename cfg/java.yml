@@ -5,6 +5,8 @@ additionalProperties:
   apiPackage: com.ewerk.spicedb.authzed.http.client
   bigDecimalAsString: true
   dateLibrary: java8
+  developerName: EWERK Digital GmbH
+  developerEmail: info@ewerk.com
   developerOrganization: EWERK Digital GmbH
   developerOrganizationUrl: https://ewerk.com
   licenseName: Apache License v2

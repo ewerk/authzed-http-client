@@ -46,11 +46,7 @@ jobs:
       - name: Run Maven build
         run: mvn -B package --file java-client/pom.xml
 
-      - name: Prepare upload
-        run: mkdir upload && cp -R java-client/target/*.jar upload
-
-      - name: Upload to GitHub
-        uses: actions/upload-artifact@v4
-        with:
-          name: Java ${{ matrix.java-version }} client library (${{ matrix.java-http-lib }})
-          path: upload
+      - name: Publish SNAPSHOT version to GitHub Packages
+        run: mvn -B --no-transfer-progress --file java-client/pom.xml deploy -DskipTests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
