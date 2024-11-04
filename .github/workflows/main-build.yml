@@ -52,8 +52,8 @@ jobs:
       - name: "Run java client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
         uses: ./.github/actions/java-client
         with:
-          release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
           spicedb-version: ${{ needs.prepare.outputs.spicedb-version }}
+          release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
           snapshot: true
 
       - name: "Publish java client snapshot to GitHub packages / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version }} / HTTP lib: ${{ matrix.java-http-lib }}"
@@ -82,5 +82,6 @@ jobs:
       - name: "Run typescript client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Node: ${{ matrix.node-version }} / Generator: ${{ matrix.generator }}"
         uses: ./.github/actions/typescript-client
         with:
+          spicedb-version: ${{ needs.prepare.outputs.spicedb-version }}
           release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
           generator: ${{ matrix.generator }}
