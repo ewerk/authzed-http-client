@@ -112,7 +112,7 @@ The following list is just high level reminder.
 
 - [x] Build badge
 - [ ] Missing community standards
-    - [ ] contributing guide
+    - [x] contributing guide
     - [ ] security policy
 - [ ] PoC
     - [ ] Semantic versioning
