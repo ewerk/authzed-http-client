@@ -29,7 +29,7 @@ jobs:
           openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${SPICEDB_VERSION}/proto/apidocs.swagger.json"
           config-file: cfg/java.yml
           # TODO param for authzed version
-          command-args: -p "artifactVersion=${{ matrix.java-version }}-${SPICEDB_VERSION:1}-0.0.0-SNAPSHOT" -p "library=${{ matrix.java-http-lib }}"
+          command-args: -p "artifactVersion=${{ matrix.java-version }}-${SPICEDB_VERSION}-0.0.0-SNAPSHOT" -p "library=${{ matrix.java-http-lib }}"
 
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4

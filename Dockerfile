@@ -28,7 +28,7 @@ RUN bash /usr/local/bin/docker-entrypoint.sh \
         -c /etc/java.yml \
         -o "/tmp/build/java-restclient" \
         -p "library=restclient" \
-        -p "artifactVersion=${java_version}-${authzed_version}-${artifact_version}"
+        -p "artifactVersion=${java_version}-${authzed_version}-${artifact_version}-SNAPSHOT"
 
 # ------------------------------------------------------------------------------------------------------
 
