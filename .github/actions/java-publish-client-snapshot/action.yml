@@ -1,0 +1,18 @@
+name: java-publish-client-snapshot
+
+description: Publish Java client snapshot to GitHub packages
+
+inputs:
+  gh-token:
+    required: true
+    description: "Input for GitHub secret token"
+
+runs:
+  using: 'composite'
+  steps:
+    # -DaltDeploymentRepository is needed as openapi generator does not create 'distributionManagement' POM section
+    - name: Publish SNAPSHOT version to GitHub Packages
+      shell: bash
+      run: mvn -B --no-transfer-progress --file java-client/pom.xml deploy -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/ewerk/authzed-http-client
+      env:
+        GITHUB_TOKEN: ${{ inputs.gh-token }}

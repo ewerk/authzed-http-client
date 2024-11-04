@@ -1,12 +1,7 @@
 # Schema: https://json.schemastore.org/github-action.json
-name: Build java client
+name: java-client
 
-description: Build Java client for given parameters.
-
-inputs:
-  gh-token:
-    required: true
-    description: "Input for GitHub secret token"
+description: Build OpenAPI Java client for given parameters.
 
 runs:
   using: 'composite'
@@ -34,10 +29,3 @@ runs:
     - name: Run Maven build
       shell: bash
       run: mvn -B package --file java-client/pom.xml
-
-    # -DaltDeploymentRepository is needed as openapi generator does not create 'distributionManagement' POM section
-    - name: Publish SNAPSHOT version to GitHub Packages
-      shell: bash
-      run: mvn -B --no-transfer-progress --file java-client/pom.xml deploy -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/ewerk/authzed-http-client
-      env:
-        GITHUB_TOKEN: ${{ inputs.gh-token }}

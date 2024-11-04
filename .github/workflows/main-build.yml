@@ -28,6 +28,9 @@ jobs:
         run: echo "SPICEDB_VERSION=$(cat spicedb.version)" >> $GITHUB_ENV
 
       - name: "Run java client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
-        uses: ./.github/actions/main-java
+        uses: ./.github/actions/java-client
+
+      - name: "Publish java client snapshot to GitHub packages / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
+        uses: ./.github/actions/java-publish-client-snapshot
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
