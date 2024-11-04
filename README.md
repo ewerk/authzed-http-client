@@ -97,7 +97,7 @@ public class ExperimentalServiceApiExample {
       System.err.println("Status code: " + cause.getStatusCode().value());
       System.err.println("Reason: " + cause.getResponseBodyAsString());
       System.err.println("Response headers: " + cause.getResponseHeaders());
-      e.printStackTrace();
+      cause.printStackTrace();
     }
   }
 }
