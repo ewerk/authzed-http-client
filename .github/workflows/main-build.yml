@@ -26,7 +26,7 @@ jobs:
       - name: Create SpiceDB OpenAPI spec url
         id: spicedb-openapi-url
         shell: bash
-        run: echo "spicedb-openapi-url=https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${{ env.spicedb-version }}/proto/apidocs.swagger.json" >> ${GITHUB_OUTPUT}
+        run: echo "url=https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${{ env.spicedb-version }}/proto/apidocs.swagger.json" >> ${GITHUB_OUTPUT}
 
       - name: Get next semver version
         uses: reecetech/version-increment@2024.10.1
@@ -36,8 +36,8 @@ jobs:
           increment: patch
     outputs:
       spicedb-version: ${{ steps.spicedb-version.outputs.spicedb-version }}
-      spicedb-openapi-url: ${{ env.spicedb-openapi-url }}
-      next-artifact-version: ${{ steps.next-artifact-version.outputs.spicedb-version }}
+      spicedb-openapi-url: ${{ steps.spicedb-openapi-url.outputs.url }}
+      next-artifact-version: ${{ steps.next-artifact-version.outputs.version }}
 
   java-client:
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
