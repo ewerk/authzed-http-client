@@ -39,7 +39,7 @@ jobs:
 
       - name: Create target Java artifact version
         shell: bash
-        run: echo "JAVA_ARTIFACT_VERSION=${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-${{ steps.java-artifact-version.outputs.version }}" >> ${GITHUB_ENV}
+        run: echo "JAVA_ARTIFACT_VERSION=${{ steps.java-artifact-version.outputs.version }}-${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}" >> ${GITHUB_ENV}
 
       - name: "Run java client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
         uses: ./.github/actions/java-client
