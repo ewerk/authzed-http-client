@@ -30,7 +30,7 @@ RUN bash /usr/local/bin/docker-entrypoint.sh \
         -o "/tmp/build/java-${library}" \
         -p "library=restclient" \
         -p artifactId=authzed-http-client-restclient \
-        -p "artifactVersion=${java_version}-${authzed_version}-${artifact_version}-SNAPSHOT"
+        -p "artifactVersion=${artifact_version}-${java_version}-${authzed_version}-SNAPSHOT"
 
 # ------------------------------------------------------------------------------------------------------
 
