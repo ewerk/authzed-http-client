@@ -18,7 +18,7 @@ jobs:
       - name: Read SpiceDB version file
         id: spicedb-version
         shell: bash
-        run: echo "version=$(cat spicedb.version)" >> ${$GITHUB_OUTPUT}
+        run: echo "version=$(cat spicedb.version)" >> ${GITHUB_OUTPUT}
     outputs:
       spicedb-version: ${{ steps.spicedb-version.outputs.version }}
 
