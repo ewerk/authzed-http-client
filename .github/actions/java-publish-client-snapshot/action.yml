@@ -18,7 +18,8 @@ runs:
     - name: Publish SNAPSHOT version to GitHub Packages
       shell: bash
       run: |
-        mvn -B --no-transfer-progress \
+        mvn --batch-mode \
+          --no-transfer-progress \
           --file java-client/pom.xml deploy \
           -DskipTests \
           -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/ewerk/authzed-http-client
