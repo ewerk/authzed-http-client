@@ -109,7 +109,7 @@ public class ExperimentalServiceApiExample {
 - [ ] PoC
     - [ ] Semantic versioning
     - [x] Publish Java clients snapshots
-    - [ ] Workflow job or step templates
+    - [x] Workflow job or step templates
 - [ ] Main build GitHub actions
     - [ ] Java build
     - [ ] Typescript build
