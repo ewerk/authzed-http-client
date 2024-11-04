@@ -33,7 +33,7 @@ jobs:
           openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${SPICEDB_VERSION}/proto/apidocs.swagger.json"
           config-file: cfg/java.yml
           # TODO param for artifact version
-          command-args: -p "artifactVersion=${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-0.0.0-SNAPSHOT" -p "library=${{ matrix.java-http-lib }}"
+          command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ matrix.java-version }}-${{ env.SPICEDB_VERSION }}-0.0.0-SNAPSHOT" -p "library=${{ matrix.java-http-lib }}"
 
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
@@ -48,6 +48,7 @@ jobs:
       - name: Run Maven build
         run: mvn -B package --file java-client/pom.xml
 
+      # -DaltDeploymentRepository is needed as openapi generator does not create 'distributionManagement' POM section
       - name: Publish SNAPSHOT version to GitHub Packages
         run: mvn -B --no-transfer-progress --file java-client/pom.xml deploy -DskipTests -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/ewerk/authzed-http-client
         env:

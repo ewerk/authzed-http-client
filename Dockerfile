@@ -18,6 +18,7 @@ WORKDIR /tmp/build/java-restclient
 ARG java_version="21"
 ARG authzed_version="v1.1.0"
 ARG artifact_version="0.0.0"
+ARG library="restclient"
 
 ADD cfg/java.yml /etc/java.yml
 
@@ -26,8 +27,9 @@ RUN bash /usr/local/bin/docker-entrypoint.sh \
         -g java \
         -i /tmp/openapi-spec.json \
         -c /etc/java.yml \
-        -o "/tmp/build/java-restclient" \
+        -o "/tmp/build/java-${library}" \
         -p "library=restclient" \
+        -p artifactId=authzed-http-client-restclient \
         -p "artifactVersion=${java_version}-${authzed_version}-${artifact_version}-SNAPSHOT"
 
 # ------------------------------------------------------------------------------------------------------
