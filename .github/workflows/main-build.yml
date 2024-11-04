@@ -56,7 +56,7 @@ jobs:
           spicedb-version: ${{ needs.prepare.outputs.spicedb-version }}
           snapshot: true
 
-      - name: "Publish java client snapshot to GitHub packages / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version}} / HTTP lib: ${{ matrix.java-http-lib }}"
+      - name: "Publish java client snapshot to GitHub packages / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.java-version }} / HTTP lib: ${{ matrix.java-http-lib }}"
         uses: ./.github/actions/java-publish-client-snapshot
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
@@ -68,7 +68,7 @@ jobs:
     strategy:
       matrix:
         node-version: [21]
-        node-http-lib: [typescript]
+        generator: [typescript]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -79,8 +79,8 @@ jobs:
         shell: bash
         run: echo "NPM_ARTIFACT_VERSION=${{ needs.prepare.outputs.next-artifact-version }}-${{ matrix.node-version }}-${{ needs.prepare.outputs.spicedb-version }}" >> ${GITHUB_ENV}
 
-      #- name: "Run typescript client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Java: ${{ matrix.npm-version}} / HTTP lib: ${{ matrix.npm-http-lib }}"
-      #  uses: ./.github/actions/java-client
-      #  with:
-      #    release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
-      #    snapshot: true
+      - name: "Run typescript client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Node: ${{ matrix.node-version }} / Generator: ${{ matrix.generator }}"
+        uses: ./.github/actions/typescript-client
+        with:
+          release-version: ${{ env.JAVA_ARTIFACT_VERSION }}
+          generator: ${{ matrix.generator }}

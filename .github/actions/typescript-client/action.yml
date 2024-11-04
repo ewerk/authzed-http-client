@@ -11,35 +11,19 @@ inputs:
   release-version:
     required: true
     description: NPM artifact version to use
-  # TODO do we need this
-  snapshot:
+  generator:
     required: true
-    default: 'true'
-    description: Whether to create a Maven snapshot artifact
+    description: NPM generator to use
 
 runs:
   using: 'composite'
   steps:
-    # Using https://openapi-generator.tech/docs/generators/java/
-    - name: Generate Java ${{ matrix.java-version }} client (${{ matrix.java-http-lib }})
+    # See https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/typescript.md
+    - name: Generate Typescript ${{ matrix.java-version }} client
       uses: openapi-generators/openapitools-generator-action@v1
       with:
-        generator: java
+        generator: typescript
+        # FIXME base url from prepare
         openapi-url: "https://raw.githubusercontent.com/authzed/authzed-go/refs/tags/${SPICEDB_VERSION}/proto/apidocs.swagger.json"
-        config-file: cfg/java.yml
-        command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ inputs.release-version }}" -p "snapshotVersion=${{ inputs.snapshot }}" -p "library=${{ matrix.java-http-lib }}"
-
-    # using 'github' as server-id prepares pushing to GitHub packages repo for snapshots
-    - name: Set up JDK ${{ matrix.java-version }}
-      uses: actions/setup-java@v4
-      with:
-        java-version: ${{ matrix.java-version }}
-        distribution: 'liberica'
-        cache: maven
-        cache-dependency-path: 'java-client/pom.xml'
-        server-id: 'github'
-
-    # the name of maven input directory is derived from openapi action output
-    - name: Run Maven build
-      shell: bash
-      run: mvn -B package --file java-client/pom.xml
+        config-file: cfg/typescript.yml
+        command-args: -p "npmName=authzed-http-client-${{ inputs.generator }}" -p "npmVersion=${{ inputs.release-version }}"
