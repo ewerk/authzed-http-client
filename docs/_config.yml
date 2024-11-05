@@ -1,0 +1,52 @@
+title: ewerk/authzed-http-client
+description: Pre-packaged auto generated SpiceDB OpenAPI HTTP clients.
+author: EWERK Digital GmbH
+email: info@ewerk.com
+
+# remote_theme: vaibhavvikas/jekyll-theme-minimalistic
+# color-scheme: dark
+# logo: logo.jpg
+# favicon: true
+
+# YAT
+remote_theme: "jeffreytse/jekyll-theme-yat@v1.10.0"
+sitemap: true
+theme_color: "spacegrey"
+brand_color: "greatgold"
+night_mode: "on"
+code_badge:
+  enabled: "true"
+
+header_pages:
+  - index.md
+  - supported-languages.md
+  - automated-builds.md
+  - building-locally.md
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-spaceship
+
+# remote_theme: zendesk/jekyll-theme-zendesk-garden@main
+#sidebar:
+#  - getting-started
+#  - supported-languages
+#  - building-locally
+#  - automated-builds
+
+# it's weird, but we have to use the .html extension
+navigation:
+  - name: Getting started
+    link: ./index.html
+  - name: Supported languages
+    link: ./supported-languages.html
+    sublist:
+      - name: Java
+        link: ./java.html
+  - name: Building locally
+    link: ./building-locally.html
+  - name: Automated builds
+    link: ./automated-builds.html

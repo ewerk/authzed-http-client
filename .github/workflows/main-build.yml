@@ -3,6 +3,8 @@ name: main
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - docs/*
 
 permissions:
   contents: read
