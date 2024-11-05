@@ -38,15 +38,15 @@ plugins:
 #  - automated-builds
 
 # it's weird, but we have to use the .html extension
-navigation:
-  - name: Getting started
-    link: ./index.html
-  - name: Supported languages
-    link: ./supported-languages.html
-    sublist:
-      - name: Java
-        link: ./java.html
-  - name: Building locally
-    link: ./building-locally.html
-  - name: Automated builds
-    link: ./automated-builds.html
+#navigation:
+#  - name: Getting started
+#    link: ./index.html
+#  - name: Supported languages
+#    link: ./supported-languages.html
+#    sublist:
+#      - name: Java
+#        link: ./java.html
+#  - name: Building locally
+#    link: ./building-locally.html
+#  - name: Automated builds
+#    link: ./automated-builds.html
