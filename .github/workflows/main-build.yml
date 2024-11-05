@@ -82,7 +82,7 @@ jobs:
     strategy:
       matrix:
         node-version: [21]
-        generator: [typescript, typescript-axios, typescript-fetch]
+        generator: [typescript, typescript-axios, typescript-fetch, typescript-angular]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

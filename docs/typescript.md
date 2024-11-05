@@ -7,6 +7,15 @@ layout: default
 
 # Typescript
 
+For the Java clients, the following variants are pre-built:
+
+## Variants
+
+| Aspect   | Permutations                                                       |
+|----------|--------------------------------------------------------------------|
+| Node     | 21                                                                 |
+| HTTP lib | typescript, typescript-axios, typescript-fetch, typescript-angular |
+
 ## Version policy
 
 The following version policy will be applied to the Typescript client packages:
@@ -40,6 +49,7 @@ The snapshot packages can be installed to your project as usual:
 # make sure you have configured GitHub NPM packages repo properly to pull from
 npm install @ewerk/authzed-http-client-restclient@0.0.0-21-v1.1.0-SNAPSHOT.202411050846 --save
 ```
+
 ## Releases
 
 > ⚠️ Currently, release pipelines are missing and therefore no packages are published to public NPM registry.
