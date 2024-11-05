@@ -5,7 +5,7 @@ toc: false
 layout: default
 ---
 
-# Java
+# ☕️ Java
 
 ## Variants
 

@@ -5,7 +5,7 @@ toc: false
 layout: default
 ---
 
-# Typescript
+# 👩‍💻 Typescript
 
 For the Java clients, the following variants are pre-built:
 
