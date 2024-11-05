@@ -69,7 +69,7 @@ $snapshot         := Optional Java snapshot classifier, format '-SNAPSHOT'
 
 ### Snapshots
 
-The Java client library build from the `main` branch are deployed to the GitHub Packages repo.
+The Java client library build from the `main` branch are deployed to the GitHub Packages registry.
 The snapshots can be seen within
 the [packages view](https://github.com/orgs/ewerk/packages?repo_name=authzed-http-client) on GiHub.
 
@@ -92,7 +92,7 @@ implementation 'com.ewerk.spicedb:authzed-http-client-restclient:0.0.1-21-v1.1.0
 
 ### Releases
 
-- [ ] t.b.d.
+⚠️ Currently, release pipelines are missing and therefore no packages are published to Maven Central.
 
 ### Usage
 
@@ -142,7 +142,7 @@ public final class ExperimentalServiceApiExample {
 
 ### Version policy
 
-The following version policy will be applied to the Typescript clients:
+The following version policy will be applied to the Typescript client packages:
 
 ```
 # pattern
@@ -161,6 +161,22 @@ $snapshot         := Optional NPM snapshot classifier, format '-SNAPSHOT.$timest
 0.0.1-21-v1.1.0-SNAPSHOT.202411050722
 ```
 
+### Snapshots
+
+The Typescript clients created from the `main` build will be published to [GitHub NPM registry]() as snapshots.
+They are available for manual download from the project 'Packages' section. 
+
+The snapshot packages can be installed to your project as usual:
+
+```bash
+# install snapshot via npm
+# make sure you have configured GitHub NPM packages repo properly to pull from
+npm install @ewerk/authzed-http-client-restclient@0.0.0-21-v1.1.0-SNAPSHOT.202411050846 --save
+```
+### Releases
+
+⚠️ Currently, release pipelines are missing and therefore no packages are published to public NPM registry.
+
 ---
 
 ## ✅ Open points
@@ -168,9 +184,9 @@ $snapshot         := Optional NPM snapshot classifier, format '-SNAPSHOT.$timest
 The following list is just high level reminder.
 
 - [x] Build badge
-- [ ] Missing community standards
+- [x] Missing community standards
     - [x] contributing guide
-    - [ ] security policy
+    - [x] security policy
 - [x] PoC
     - [x] Semver compliant release versioning
     - [x] Publish Java clients snapshots
@@ -185,3 +201,4 @@ The following list is just high level reminder.
     - [ ] Typescript
     - [ ] Python
     - [ ] C#
+- [ ] Move most part of README docs to GitHub pages
