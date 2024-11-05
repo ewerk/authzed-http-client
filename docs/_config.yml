@@ -13,7 +13,7 @@ remote_theme: "jeffreytse/jekyll-theme-yat@v1.10.0"
 sitemap: true
 theme_color: "spacegrey"
 brand_color: "greatgold"
-night_mode: "off"
+night_mode: "on"
 code_badge:
   enabled: false
 
