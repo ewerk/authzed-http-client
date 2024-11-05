@@ -9,7 +9,7 @@ layout: default
 
 The following languages are currently supported.
 
-- [Java](java.md) (no published to Maven Central yet)
-- [Typescript](typescript.md) (not published to NPM registry yet)
+- [Java](java.md)
+- [Typescript](typescript.md)
 - Python (planned)
 - C# (planned)
