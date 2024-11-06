@@ -5,8 +5,8 @@
 ## 🚀 Introduction
 
 The repository provides a building facade for generating HTTP clients for the [SpiceDB](https://authzed.com/spicedb)
-REST API. It currently is in incubating/showcase state. The target is to provide pre-packaged HTTP clients for 
-various languages. The build infrastructure is backed by the [GitHub Actions](https://docs.github.com/en/actions) 
+REST API. It currently is in incubating/showcase state. The target is to provide pre-packaged HTTP clients for
+various languages. The build infrastructure is backed by the [GitHub Actions](https://docs.github.com/en/actions)
 composed around [OpenAPI Generator CLI]().
 
 ## 📒 Documentation
@@ -18,7 +18,9 @@ The full documentation can be found on the [projects GitHub pages](https://ewerk
 The following list is just high level reminder.
 
 - [x] Build badge
-- [ ] Overcome missing security section in SpiceDB OpenAPI spec
+- [ ] Misc
+    - [ ] improved usage examples
+    - [ ] Overcome missing security section in SpiceDB OpenAPI spec
 - [x] Missing community standards
     - [x] contributing guide
     - [x] security policy
