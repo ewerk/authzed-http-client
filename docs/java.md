@@ -11,10 +11,10 @@ layout: default
 
 For the Java clients, the following variants are pre-built:
 
-| Aspect   | Permutations            |
-|----------|-------------------------|
-| Java     | 17, 21                  |
-| HTTP lib | okhttp-gson, restclient |
+| Aspect   | Permutations                                            |
+|----------|---------------------------------------------------------|
+| Java     | 17, 21                                                  |
+| HTTP lib | feign, resttemplate, webclient, restclient, okhttp-gson |
 
 ## Version policy
 

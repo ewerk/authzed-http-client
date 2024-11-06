@@ -52,7 +52,7 @@ jobs:
     strategy:
       matrix:
         java-version: [17, 21]
-        java-http-lib: [restclient, okhttp-gson]
+        java-http-lib: [feign, resttemplate, webclient, restclient, okhttp-gson]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
