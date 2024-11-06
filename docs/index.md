@@ -15,3 +15,6 @@ The build infrastructure is backed by the [GitHub Actions](https://docs.github.c
 composed around [OpenAPI Generator CLI]().
 
 Please see [supported languages](supported-languages.md) page for more details.
+
+# 👩🏿‍💻 Source code
+The projects source code can be found on GitHub: https://github.com/ewerk/authzed-http-client
