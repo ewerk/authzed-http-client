@@ -9,13 +9,9 @@ REST API. It currently is in incubating/showcase state. The target is to provide
 various languages. The build infrastructure is backed by the [GitHub Actions](https://docs.github.com/en/actions) 
 composed around [OpenAPI Generator CLI]().
 
----
-
 ## 📒 Documentation
 
 The full documentation can be found on the [projects GitHub pages](https://ewerk.github.io/authzed-http-client).
-
----
 
 ## ✅ Open points
 
