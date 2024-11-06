@@ -36,4 +36,3 @@ The following list is just high level reminder.
     - [ ] Python
     - [ ] C#
 - [x] Move most part of README docs to GitHub pages
-- [ ] Transfer open tasks to enhancement issues
