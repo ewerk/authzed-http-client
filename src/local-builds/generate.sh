@@ -7,8 +7,9 @@ WORKDIR=$(pwd)
 echo "Workdir: ${WORKDIR}"
 
 rm -rf "${WORKDIR}/build"
-docker build --no-cache --output=./build .
 echo "Cleaned workdir"
+
+docker build --no-cache --output=./build -f ./src/local-builds/Dockerfile . || exit 1
 
 echo "Building java-restclient package"
 cd "${WORKDIR}/build/java-restclient" || exit 1

@@ -20,7 +20,7 @@ ARG authzed_version="v1.1.0"
 ARG artifact_version="0.0.0"
 ARG library="restclient"
 
-ADD cfg/java.yml /etc/java.yml
+ADD ./src/cfg/java.yml /etc/java.yml
 
 RUN bash /usr/local/bin/docker-entrypoint.sh \
         generate \
@@ -45,7 +45,7 @@ ARG node_version="21"
 ARG authzed_version="v1.1.0"
 ARG artifact_version="0.0.0"
 
-ADD cfg/typescript-fetch.yml /etc/typescript-fetch.yml
+ADD ./src/cfg/typescript-fetch.yml /etc/typescript-fetch.yml
 
 RUN bash /usr/local/bin/docker-entrypoint.sh \
         generate \

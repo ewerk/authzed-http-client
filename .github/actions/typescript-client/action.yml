@@ -41,7 +41,7 @@ runs:
         generator: ${{ inputs.generator }}
         generator-tag: ${{ inputs.openapi-version }}
         openapi-url: ${{ inputs.openapi-spec }}
-        config-file: cfg/${{ inputs.generator }}.yml
+        config-file: src/cfg/${{ inputs.generator }}.yml
         # -p "npmRepository=https://github.com/ewerk/authzed-http-client.git"
         # TODO try multiline
         command-args: --git-host "github.com" --git-repo-id "authzed-http-client" --git-user-id "ewerk" -p "npmName=@ewerk/authzed-http-client-${{ inputs.generator }}" -p "npmVersion=${{ inputs.release-version }}" -p "snapshot=${{ inputs.snapshot }}"

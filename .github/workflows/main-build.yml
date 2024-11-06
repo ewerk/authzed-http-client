@@ -22,9 +22,9 @@ jobs:
         id: read-versions
         shell: bash
         run: |
-          echo "spicedb-version=$(cat spicedb.version)" >> ${GITHUB_ENV}
-          echo "spicedb-version=$(cat spicedb.version)" >> ${GITHUB_OUTPUT}
-          echo "openapi-version=$(cat openapi.version)" >> ${GITHUB_OUTPUT}
+          echo "spicedb-version=$(cat src/spicedb.version)" >> ${GITHUB_ENV}
+          echo "spicedb-version=$(cat src/spicedb.version)" >> ${GITHUB_OUTPUT}
+          echo "openapi-version=$(cat src/openapi.version)" >> ${GITHUB_OUTPUT}
 
       - name: Create SpiceDB OpenAPI spec url
         id: spicedb-openapi-url
