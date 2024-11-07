@@ -17,4 +17,4 @@ composed around [OpenAPI Generator CLI]().
 Please see [supported languages](supported-languages.md) page for more details.
 
 # 👩🏿‍💻 Source code
-The projects source code can be found on GitHub: https://github.com/ewerk/authzed-http-client
+The projects source code can be found on GitHub: [ewerk/authzed-http-client](https://github.com/ewerk/authzed-http-client)
