@@ -28,10 +28,10 @@ runs:
     - name: Generate Java ${{ matrix.python-version }} client (${{ matrix.java-http-lib }})
       uses: openapi-generators/openapitools-generator-action@v1
       with:
-        generator: java
+        generator: python
         generator-tag: ${{ inputs.openapi-version }}
         openapi-url: ${{ inputs.openapi-spec }}
-        config-file: src/cfg/java.yml
+        config-file: src/cfg/python.yml
         command-args: -p packageName=authzed_http_client_${{ matrix.python-http-lib }} -p "packageVersion=${{ inputs.release-version }}" -p "library=${{ matrix.python-http-lib }}"
     - name: 'Log root directory content...'
       shell: bash
