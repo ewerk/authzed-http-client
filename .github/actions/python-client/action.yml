@@ -14,10 +14,6 @@ inputs:
   release-version:
     required: true
     description: 'Python artifact version to use'
-  snapshot:
-    required: true
-    default: 'true'
-    description: 'Whether to create a Maven snapshot artifact'
   openapi-spec:
     required: true
     description: 'OpenAPI spec url to use for generation'
