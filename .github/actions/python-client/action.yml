@@ -1,0 +1,48 @@
+# Schema: https://json.schemastore.org/github-action.json
+name: python-client
+
+description: Build OpenAPI Python client for given parameters.
+
+branding:
+  color: black
+  icon: book
+
+inputs:
+  spicedb-version:
+    required: true
+    description: 'The SpiceDB version to use'
+  release-version:
+    required: true
+    description: 'Python artifact version to use'
+  snapshot:
+    required: true
+    default: 'true'
+    description: 'Whether to create a Maven snapshot artifact'
+  openapi-spec:
+    required: true
+    description: 'OpenAPI spec url to use for generation'
+  openapi-version:
+    required: true
+    description: 'OpenAPI release version to be used'
+
+runs:
+  using: 'composite'
+  steps:
+    # Using https://openapi-generator.tech/docs/generators/java/
+    - name: Generate Java ${{ matrix.python-version }} client (${{ matrix.java-http-lib }})
+      uses: openapi-generators/openapitools-generator-action@v1
+      with:
+        generator: java
+        generator-tag: ${{ inputs.openapi-version }}
+        openapi-url: ${{ inputs.openapi-spec }}
+        config-file: src/cfg/java.yml
+        command-args: -p packageName=authzed_http_client_${{ matrix.python-http-lib }} -p "packageVersion=${{ inputs.release-version }}" -p "library=${{ matrix.python-http-lib }}"
+    - name: 'Log root directory content...'
+      shell: bash
+      run: |
+        pwd
+        ls -al
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'

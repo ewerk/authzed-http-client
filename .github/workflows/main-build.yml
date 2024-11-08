@@ -111,3 +111,30 @@ jobs:
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
           generator: ${{ matrix.generator }}
+
+  python-client:
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+    needs: [prepare]
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        python-version: [3.13]
+        python-http-lib: [urllib3]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required due to the way Git works, without it this action won't be able to find any or the correct tags
+
+      - name: Create target Python artifact version
+        shell: bash
+        run: echo "PYTHON_ARTIFACT_VERSION=${{ needs.prepare.outputs.next-artifact-version }}-${{ matrix.python-version }}-${{ needs.prepare.outputs.spicedb-version }}" >> ${GITHUB_ENV}
+
+      - name: "Run python client build / SpiceDB: ${{ env.SPICEDB_VERSION }} / Python: ${{ matrix.python-version}} / HTTP lib: ${{ matrix.python-http-lib }}"
+        uses: ./.github/actions/java-client
+        with:
+          spicedb-version: ${{ needs.prepare.outputs.spicedb-version }}
+          release-version: ${{ env.PYTHON_ARTIFACT_VERSION }}
+          snapshot: true # TODO
+          openapi-spec: ${{ needs.prepare.outputs.spicedb-openapi-url }}
+          openapi-version: ${{ needs.prepare.outputs.openapi-version }}
