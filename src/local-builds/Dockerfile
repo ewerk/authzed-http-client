@@ -23,10 +23,13 @@ ARG library="restclient"
 ADD ./src/cfg/java.yml /etc/java.yml
 
 RUN bash /usr/local/bin/docker-entrypoint.sh \
-        generate \
+      generate \
         -g java \
         -i /tmp/openapi-spec.json \
         -c /etc/java.yml \
+        --git-host "github.com" \
+        --git-repo-id "authzed-http-client" \
+        --git-user-id "ewerk" \
         -o "/tmp/build/java-${library}" \
         -p "library=restclient" \
         -p artifactId=authzed-http-client-restclient \
@@ -48,7 +51,7 @@ ARG artifact_version="0.0.0"
 ADD ./src/cfg/typescript-fetch.yml /etc/typescript-fetch.yml
 
 RUN bash /usr/local/bin/docker-entrypoint.sh \
-        generate \
+      generate \
         -g typescript-fetch \
         -i /tmp/openapi-spec.json \
         -c /etc/typescript-fetch.yml \
@@ -56,9 +59,36 @@ RUN bash /usr/local/bin/docker-entrypoint.sh \
         --git-host "github.com" \
         --git-repo-id "authzed-http-client" \
         --git-user-id "ewerk" \
-        -p npmName="@ewerk/authzed-http-client-restclient" \
+        -p npmName="@ewerk/authzed-http-client-typescript-fetch" \
         -p "npmVersion=${artifact_version}-${node_version}-${authzed_version}" \
         -p "snapshot=true"
+
+# ------------------------------------------------------------------------------------------------------
+
+FROM openapitools/openapi-generator-cli:v7.9.0 AS python-urllib3
+
+COPY --from=download /tmp/openapi-spec.json /tmp/openapi-spec.json
+
+RUN mkdir -p /tmp/build/python-urllib3
+WORKDIR /tmp/build/python-urllib3
+
+ARG python_version="3.13"
+ARG authzed_version="v1.1.0"
+ARG artifact_version="0.0.0"
+
+ADD ./src/cfg/python.yml /etc/python.yml
+
+RUN bash /usr/local/bin/docker-entrypoint.sh \
+      generate \
+        -g python \
+        -i /tmp/openapi-spec.json \
+        -c /etc/python.yml \
+        -o "/tmp/build/python-urllib3" \
+        --git-host "github.com" \
+        --git-repo-id "authzed-http-client" \
+        --git-user-id "ewerk" \
+        -p npmName="@ewerk/authzed-http-client-python-urllib3" \
+        -p "npmVersion=${artifact_version}-${python_version}-${authzed_version}"
 
 # ------------------------------------------------------------------------------------------------------
 
@@ -68,3 +98,4 @@ LABEL org.opencontainers.image.authors="info@ewerk.com"
 
 COPY --from=java-restclient /tmp/build/java-restclient /java-restclient
 COPY --from=typescript-fetch /tmp/build/typescript-fetch /typescript-fetch
+COPY --from=python-urllib3 /tmp/build/python-urllib3 /python-urllib3

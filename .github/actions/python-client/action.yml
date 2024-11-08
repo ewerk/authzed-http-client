@@ -33,7 +33,8 @@ runs:
         openapi-url: ${{ inputs.openapi-spec }}
         config-file: src/cfg/python.yml
         command-args: -p packageName=authzed_http_client_${{ matrix.python-http-lib }} -p "packageVersion=${{ inputs.release-version }}" -p "library=${{ matrix.python-http-lib }}"
-    - name: 'Log root directory content...'
+    - name: 'Log python-client working directory content...'
+      working-directory: 'python-client'
       shell: bash
       run: |
         pwd
