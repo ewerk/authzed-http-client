@@ -25,7 +25,7 @@ runs:
   using: 'composite'
   steps:
     # Using https://openapi-generator.tech/docs/generators/python/
-    - name: Generate Java ${{ matrix.python-version }} client (${{ matrix.java-http-lib }})
+    - name: Generate Python ${{ matrix.python-version }} client (${{ matrix.python-http-lib }})
       uses: openapi-generators/openapitools-generator-action@v1
       with:
         generator: python
