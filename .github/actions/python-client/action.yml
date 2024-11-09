@@ -43,3 +43,14 @@ runs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
+    - name: Display Python version
+      shell: bash
+      run: python -c "import sys; print(sys.version)"
+    - name: "Install PIP dependencies"
+      working-directory: 'python-client'
+      shell: bash
+      run: pip install -r requirements.txt
+    - name: "Run pip test"
+      working-directory: 'python-client'
+      shell: bash
+      run: pip test
