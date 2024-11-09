@@ -11,5 +11,13 @@ The following languages are currently supported.
 
 - [Java](java.md)
 - [Typescript](typescript.md)
-- Python (planned)
-- C# (planned)
+- Python
+- C#
+
+# 📦 Package publications
+
+| Ecosystem  | Snapshots         | Releases                  |
+|------------|-------------------|---------------------------|
+| Java       | ✅ GitHub packages | ❌ Maven Central (planned) |
+| Typescript | ✅ GitHub packages | ❌ ?? (planned)            |
+| Python     | ❌ (working on)    | ❌ ?? (planned)            |
