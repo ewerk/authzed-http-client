@@ -19,5 +19,6 @@ The following languages are currently supported.
 | Ecosystem  | Snapshots         | Releases                  |
 |------------|-------------------|---------------------------|
 | Java       | ✅ GitHub packages | ❌ Maven Central (planned) |
-| Typescript | ✅ GitHub packages | ❌ ?? (planned)            |
-| Python     | ❌ (working on)    | ❌ ?? (planned)            |
+| Typescript | ✅ GitHub packages | ❌ NPM Registry (planned)  |
+| Python     | ❌ (working on)    | ❌ PyPI (planned)          |
+| C#         | ❌ (planned)       | ❌ PyPI (planned)          |
