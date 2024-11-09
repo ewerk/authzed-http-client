@@ -39,19 +39,18 @@ runs:
       run: |
         pwd
         ls -al
+        cat pyproject.toml
     - uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
-    - name: Display Python version
-      shell: bash
-      run: python -c "import sys; print(sys.version)"
     - name: "Install dependencies"
       working-directory: 'python-client'
       shell: bash
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install -r test-requirements.txt
     - name: Install the code linting and formatting tool Ruff
       shell: bash
       run: pipx install ruff
