@@ -56,7 +56,7 @@ runs:
       run: pipx install ruff
     - name: Check code formatting with Ruff
       shell: bash
-      run: ruff format --diff --target-version=py39
+      run: ruff format --target-version=py39
       continue-on-error: true
     - name: "Run tox tests"
       working-directory: 'python-client'
