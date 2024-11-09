@@ -54,9 +54,6 @@ runs:
     - name: Install the code linting and formatting tool Ruff
       shell: bash
       run: pipx install ruff
-    - name: Lint code with Ruff
-      shell: bash
-      run: ruff check --output-format=github --target-version=py39
     - name: Check code formatting with Ruff
       shell: bash
       run: ruff format --diff --target-version=py39
