@@ -58,8 +58,9 @@ runs:
       shell: bash
       run: ruff format --target-version=py39
       continue-on-error: true
-    - name: "Run tox tests"
+    - name: "Run tests"
       working-directory: 'python-client'
       shell: bash
       # Run tox using the version of Python in `PATH`
-      run: tox -e py
+      #run: tox -e py
+      run: pytest tests.py
