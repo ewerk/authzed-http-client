@@ -20,7 +20,7 @@ The following list is just high level reminder.
 - [x] Build badge
 - [ ] Misc
     - [ ] improved usage examples
-    - [ ] Overcome missing security section in SpiceDB OpenAPI spec
+    - [x] Overcome missing security section in SpiceDB OpenAPI spec
 - [x] Missing community standards
     - [x] contributing guide
     - [x] security policy
