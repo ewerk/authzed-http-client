@@ -48,19 +48,24 @@ runs:
       working-directory: 'python-client'
       shell: bash
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install -r test-requirements.txt
-    - name: Install the code linting and formatting tool Ruff
+        python -m pip install --upgrade pip pipx
+        pipx install poetry
+    - name: Setup poetry project
       shell: bash
-      run: pipx install ruff
+      run: |
+        poetry install --all-extras
+    - name: Code linting and formatting tool using Ruff
+      shell: bash
+      run: |
+        poetry run ruff check . --fix
     - name: Check code formatting with Ruff
       shell: bash
-      run: ruff format --target-version=py39
+      run: |
+        poetry run ruff format --check --target-version py39
       continue-on-error: true
     - name: "Run tests"
       working-directory: 'python-client'
       shell: bash
       # Run tox using the version of Python in `PATH`
-      #run: tox -e py
-      run: pytest test/test_*.py
+      run: |
+        poetry run tox -e py 
