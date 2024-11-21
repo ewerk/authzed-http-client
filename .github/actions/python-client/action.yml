@@ -55,6 +55,7 @@ runs:
     - name: Code linting and formatting tool using Ruff
       working-directory: 'python-client'
       shell: bash
+      continue-on-error: true
       run: |
         poetry run ruff check . --fix
     - name: Code formatting with Ruff
@@ -62,7 +63,6 @@ runs:
       shell: bash
       run: |
         poetry run ruff format --check --target-version py39
-      continue-on-error: true
     - name: "Run tests"
       working-directory: 'python-client'
       shell: bash
