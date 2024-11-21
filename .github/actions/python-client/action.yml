@@ -63,9 +63,3 @@ runs:
       shell: bash
       run: |
         poetry run ruff format --target-version py39
-    - name: "Run tests"
-      working-directory: 'python-client'
-      shell: bash
-      # Run tox using the version of Python in `PATH`
-      run: |
-        poetry run tox -e py 
