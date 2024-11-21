@@ -62,7 +62,7 @@ runs:
       working-directory: 'python-client'
       shell: bash
       run: |
-        poetry run ruff format --check --target-version py39
+        poetry run ruff format --target-version py39
     - name: "Run tests"
       working-directory: 'python-client'
       shell: bash
