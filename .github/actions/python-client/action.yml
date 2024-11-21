@@ -51,14 +51,17 @@ runs:
         python -m pip install --upgrade pip pipx
         pipx install poetry
     - name: Setup poetry project
+      working-directory: 'python-client'
       shell: bash
       run: |
         poetry install --all-extras
     - name: Code linting and formatting tool using Ruff
+      working-directory: 'python-client'
       shell: bash
       run: |
         poetry run ruff check . --fix
     - name: Check code formatting with Ruff
+      working-directory: 'python-client'
       shell: bash
       run: |
         poetry run ruff format --check --target-version py39
