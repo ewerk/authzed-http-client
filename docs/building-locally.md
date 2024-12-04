@@ -16,4 +16,4 @@ build the client(s) locally using a Docker based stack.
 ./src/local-builds/generate.sh
 ```
 
-> ℹ️ The local build approach is mostly going to be archived once the automated workflow(s) are fully complete.
+> ℹ️ The local build approach is main intention is to support local dev and testing. The _real_ source of truth are the GitHub actions.
