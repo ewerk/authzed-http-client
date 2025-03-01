@@ -38,7 +38,7 @@ runs:
         config-file: src/cfg/java.yml
         command-args: -p artifactId=authzed-http-client-${{ matrix.java-http-lib }} -p "artifactVersion=${{ inputs.release-version }}" -p "snapshotVersion=${{ inputs.snapshot }}" -p "library=${{ matrix.java-http-lib }}"
 
-    # using 'github' as server-id prepares pushing to GitHub packages repo for snapshots
+    # using 'GitHub' as server-id prepares pushing to GitHub packages repo for snapshots
     - name: Set up JDK ${{ matrix.java-version }}
       uses: actions/setup-java@v4
       with:
